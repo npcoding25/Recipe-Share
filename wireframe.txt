@@ -1,0 +1,19 @@
+Home Page
+  Login 
+    Username, Password  
+  Get receipes from the database and display
+  Post Button
+    Goes to new page to enter receipes
+    Get added to database
+    Go back to Home Page
+  Search Button
+    Get receipes from the api
+    List receipes with Save option
+    Click Save to add receipe to database
+
+DATABASE
+login table: id, username, password, favourites [receipeId, receipeId]
+
+receipe table: receipeId, title, description, userId
+
+  
