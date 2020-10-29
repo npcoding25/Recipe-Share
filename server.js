@@ -1,4 +1,4 @@
-require( 'dotenv' ).config() // looks for .env ; process.env gets it's values
+require('dotenv').config() // looks for .env ; process.env gets it's values
 
 const express = require('express')
 const apiRouter = require('./app/router/router')
@@ -11,11 +11,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // for serving all the normal html
-app.use( express.static('public') )
+app.use(express.static('public'))
 
 // for routes
 apiRouter(app)
 
 app.listen(PORT, function() {
-    console.log( `Database (name=${process.env.DB_NAME}); Serving app on: https://localhost:${PORT}` )
+    console.log(`Database (name=${process.env.DB_NAME}); Serving app on: http://localhost:${PORT}`)
 })
