@@ -1,19 +1,39 @@
 Home Page
-  Login 
-    Username, Password  
-  Get receipes from the database and display
-  Post Button
-    Goes to new page to enter receipes
-    Get added to database
+  Login (maybe modal popup)
+    Register -> POST /api/user Send username, password 
+    Login -> PUT /api/user Send Username, Password
+  Random Recipes -> GET /api/recipe
+    Clicking on Recipe goes to Recipe page
+
+After Login Home Page
+  Get user's receipes -> GET /api/recipe/:user
+    Clicking on Recipe goes to Recipe page
+
+  Post Button (new page)
+    Form to enter receipes
+    Add to database -> POST /api/recipe/:user Send recipe
     Go back to Home Page
-  Search Button
-    Get receipes from the api
-    List receipes with Save option
-    Click Save to add receipe to database
+  Search Button (same page as user's homepage)
+    Get receipes from the api -> Food API
+    List receipes with Save option 
+    Click Save to add receipe to database -> POST /api/recipe/:user Send recipe
+
+SERVER ENDPOINTS
+POST /api/user -> addUser(username, password)
+PUT /api/user -> getUser(username) then compare
+GET /api/recipe -> getAllRecipes()
+GET /api/receipe/:user -> getUserRecipes(userId)
+POST /api/recipe/:user -> addRecipe(userId, receipe)
+
+ORM
+addUser(username, passord) -> SQL 
+getUser(username) -> SQL SELECT 
+getAllRecipes() -> SQL (LIMIT 10)
+getUserRecipes(userId) -> SQL
+addRecipe(userId, receipe) -> SQL
 
 DATABASE
-login table: id, username, password, favourites [receipeId, receipeId]
-
+login table: id, username, password
 receipe table: receipeId, title, description, userId
 
   
