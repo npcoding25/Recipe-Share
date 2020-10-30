@@ -1,0 +1,65 @@
+#navbar {
+    background-color: #ffe6e6;
+}
+.nav-centered {
+    float: none;
+    position: absolute;
+    left: 45%
+}
+
+#title {
+    color: #804000;
+    font-size: 25px;
+    font-family: 'Nanum Myeongjo', serif;
+}
+#navlink {
+   color: #804000;
+   font-family: 'Nanum Myeongjo', serif;
+}
+.container {
+    padding: 30px;
+}
+h1 {
+    color: #804000;
+    font-family: "Parisienne", cursive;
+}
+p {
+    color: #804000;
+    font-family: 'Nanum Myeongjo', serif;
+}
+.form-group {
+    color: #804000;
+    font-family: 'Nanum Myeongjo', serif;
+    align-content: center;
+    margin-left: 8%;
+    margin-right: 8%;
+    font-size: 18px;
+}
+.form-control {
+    color: #804000;
+    font-family: 'Nanum Myeongjo', serif;
+}
+#rowlabel {
+    font-family: 'Nanum Myeongjo', serif;
+    margin-left: 8%;
+    color: #804000;
+}
+#row1 {
+   margin-left: 6%;
+}
+#imagebtn {
+    margin-left: 8%;
+    background-color: #804000;
+    font-family: 'Nanum Myeongjo', serif;
+    color: white;
+}
+#postbtn {
+    margin-left: 8%;
+    background-color: #804000;
+    font-family: 'Nanum Myeongjo', serif;
+}
+.page-footer {
+    background-color: #ffe6e6;
+    font-family: 'Nanum Myeongjo', serif;
+    color: #804000;
+}
