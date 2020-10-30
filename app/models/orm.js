@@ -1,44 +1,7 @@
-/* ORM FOLDER ========================================
-We abstract our database and information-modelling code
-into this section
-====================================================== */
-
 const db = require('../config/connection.js')
     // an external npm package we are using
 const moment = require('moment')
 
-/*
-function getUserRecipes(criteria = { user_id }) {
-    return db.query('SELECT * FROM tasks ' + (criteria ? 'WHERE ? ' : ''), criteria)
-}
-
-function addRecipe(recipe_id, frequency, title, user_id, description, createdAt) {
-    if (frequency === '') {
-        frequency = 'primary'
-    }
-    if (createdAt === '') {
-        createdAt = moment().format('YYYY-MM-DD')
-    }
-
-    console.log(' inserting recipe data: ', { recipe_id, frequency, title, user_id, description, createdAt })
-    return db.query('INSERT INTO recipe SET ? ', { recipe_id, frequency, title, user_id, description, createdAt })
-}
-
-function updateTask(id, priority, info, due) {
-    return db.query('UPDATE tasks SET ? WHERE id=?', [{ priority, info, due }, id])
-}
-
-function deleteRecipe(recipe_id) {
-    return db.query('DELETE FROM recipe WHERE id=?', [recipe_id])
-}
-
-module.exports = {
-    getList,
-    insertTask,
-    updateTask,
-    deleteTask
-}
-*/
 
 function printQuestionMarks(num) {
     const arr = [];
