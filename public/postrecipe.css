@@ -1,0 +1,21 @@
+#searchbtn {
+    margin-left: 20px;
+}
+#searchbar {
+    float: right;
+    margin-right: 20px;
+}
+.form-group {
+    align-content: center;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+#postbtn {
+    margin-left: 8%;
+}
+.nav-centered {
+    float: none;
+    position: absolute;
+    left: 45%
+}
+
