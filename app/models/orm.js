@@ -1,4 +1,4 @@
-const db = require('../config/connection.js')
+const connection = require('../config/connection.js')
     // an external npm package we are using
 const moment = require('moment')
 
