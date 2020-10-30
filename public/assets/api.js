@@ -2,6 +2,8 @@ const cuisineType = $('#cuisineType').val()
 const intolerance = $('#intolerance').val()
 const foodItem = $('#foodItem').val()
 
+$('#searchBtn').on("click", searchRecipe())
+
 function searchRecipe() {
     let cuisine = `cuisine=${cuisineType}`
     let intolerances = `&intolerances=${intolerance}`
@@ -21,7 +23,7 @@ function searchRecipe() {
         console.log(response);
         const results = response.results
         for (let i = 0; i < results.length; i++) {
-            $('#').append(`
+            $('#apiCall').append(`
                 <div class="card" style="width: 18rem;">
                     <h5 class="card-title">${results[i].title}</h5>
                     <img src="${response.baseUri + results[i].image}" class="card-img-top" alt="...">
@@ -35,6 +37,8 @@ function searchRecipe() {
         }
     });
 }
+
+
 
 // $('').text(results[i].title)
 // $('').text(response.baseUri + results[i].image)
