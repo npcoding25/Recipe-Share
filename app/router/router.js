@@ -5,7 +5,7 @@ real controller elements are the 'router', so we create a
 router folder
 ====================================================== */
 
-const orm = require('../models/orm');
+const orm = require('../models/recipe.js');
 const passwordHash = require('password-hash');
 
 function router(app) {
@@ -58,7 +58,7 @@ function router(app) {
     // DELETE /api/recipe/:id
     app.delete('/api/recipe/:id', async function(req, res) {
         const recipeId = req.params.id
-        // console.log(`[DELETE /api/recipe/:id] id=${recipeId}`);
+            // console.log(`[DELETE /api/recipe/:id] id=${recipeId}`);
         const deleteResult = await orm.deleteRecipe(recipeId);
         res.send({ message: 'Recipe Deleted' });
     });
