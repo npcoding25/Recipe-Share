@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="postrecipe.css">
     <script src="./assets/"></script>
 
+    <!-- Google fonts links -->
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
     <!-- any NPM packages you want to include, you can directly include like this -->
     <script src="https://unpkg.com/moment"></script>
 </head>
@@ -26,9 +31,9 @@
 <!-- we will start the app when this page is loaded by running it with onLoad... -->
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light">
         <div class="nav-centered">
-            <a class="navbar-brand" href="postrecipe.html">Recipe Share</a>
+            <a class="navbar-brand" id="title" href="postrecipe.html">Recipe Share</a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -39,22 +44,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a id="navlink" class="nav-link" href="index.html">Home</a>
                 </li>
 
             </ul>
         </div>
     </nav>
 
-    <br>
-
-    <div class="jumbotron text-center jumbotron-fluid">
+    <div class="jumbotron bg-cover text-center" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://images.creativemarket.com/0.1.0/ps/3667915/1820/1213/m1/fpnw/wm1/nmzbxenrvudgiuql2gecymrkchyewfixbljlnhzfmcee5aog6m0o0146ltenmjts-.jpg?1512111126&s=a0f29bafb9e6269216b2d15c0786bdb0)">
         <div class="container">
-            <h1 class="display-5">Post Your Recipe!</h1>
-            <p class="lead"> Do you have a family recipe you'd like to document? Have you recently experimented in the
+            <h1 class="display-4">Post Your Recipe!</h1>
+            <p class="lead">Do you have a family recipe you'd like to document? Have you recently experimented in the
                 kitchen and come up with a recipe you'd like to share? Post it here, or have a look at what others have
                 concocted!</p>
         </div>
+
     </div>
 
     <br>
@@ -62,7 +66,8 @@
     <form>
         <div class="form-group">
             <label for="exampleFormControlInput1">Recipe Title</label>
-            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Enter recipe title here...">
+            <input type="text" class="form-control" id="exampleFormControlInput2" id="placeholder"
+                placeholder="Enter recipe title here...">
         </div>
         <br>
         <div class="form-group">
@@ -119,10 +124,34 @@
             <label for="exampleFormControlTextarea1">Instructions</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
         </div>
+
         <br>
+
+        <label id="rowlabel" for="exampleFormControlTextarea1">Add a Display Image for Your Recipe</label>
+
+        <br></br>
+
+        <div id="row1" class="row">
+            <div class="col-2">
+                <label id="imagebtn" class="btn btn-default"> Choose File Here <input type="file" hidden></label> 
+            </div>
+            or          
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Insert image URL here ...">
+            </div>
+        </div>
+
+        <br></br>
+
         <button id="postbtn" type="submit" class="btn btn-primary">Post Your Recipe</button>
+
     </form>
+    <br></br>
+
 </body>
 
+<footer class="page-footer font-small black pt-4">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright Recipe Share</div>
+</footer>
 
 </html>
