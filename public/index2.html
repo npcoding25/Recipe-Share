@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            position: relative;
+            overflow: hidden;
+            ;
+        }
+
+        .topnav a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            color: black;
+            font-size: 30px;
+        }
+
+        .topnav-centered a {
+            float: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .topnav-right {
+            float: right;
+        }
+
+        .form-control {
+            text-align: center;
+        }
+
+        /* Responsive navigation menu (for mobile devices) */
+        @media screen and (max-width: 600px) {
+
+            .topnav a,
+            .topnav-right {
+                float: none;
+                display: block;
+            }
+
+            .topnav-centered a {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <!-- Top navigation -->
+        <div class="topnav">
+
+            <!-- Centered link -->
+
+            <div class="topnav-centered">
+                <a href="#home" class="active">Food Blog</a>
+            </div>
+
+            <!-- Left-aligned links (default) -->
+
+
+            <!-- Right-aligned links -->
+            <div class="topnav-right">
+                <a href="#search">Sign Up</a>
+                <a href="#about">Login</a>
+            </div>
+        </div>
+        </body>
+    </body>
+
+    </br>
+
+    <div style="padding-left:16px">
+        <h2>An awesome blog where you can search and post recipes!</h2>
+
+    </div>
+
+    </br>
+        <input id="foodItem" class="form-control col-8" type="search" placeholder="Search for a recipe" aria-label="Search">
+        <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+
+        <!-- <button id="cuisineType" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Cuisines"></button> -->
+        <select id="cuisineType" class="custom-select">
+            <option value="1">African</option>
+            <option value="2">Chinese</option>
+            <option value="3">Korean</option>
+            <option value="4">Vietnamese</option>
+            <option value="5">Thai</option>
+            <option value="6">Indian</option>
+            <option value="7">British</option>
+            <option value="8">Irish</option>
+            <option value="9">French</option>
+            <option value="10">Italian</option>
+            <option value="11">Mexican</option>
+            <option value="12">Spanish</option>
+            <option value="13">Middle Eastern</option>
+            <option value="14">Jewish</option>
+            <option value="15">American</option>
+            <option value="16">Cajun</option>
+            <option value="17">Southern</option>
+            <option value="18">Greek</option>
+            <option value="19">German</option>
+            <option value="20">Nordic</option>
+            <option value="21">Eastern European</option>
+            <option value="22">Caribbean</option>
+            <option value="23">Latin American</option>
+        </select>
+<!-- 
+        <button id="intolerance" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Intolerances"></button> -->
+        <select id="intolerance" class="custom-select">
+            <option value="1">Dairy</option>
+            <option value="2">Egg</option>
+            <option value="3">Gluten</option>
+            <option value="4">Peanut</option>
+            <option value="5">Sesame</option>
+            <option value="6">Seafood</option>
+            <option value="7">Shellfish</option>
+            <option value="8">Soy</option>
+            <option value="9">Sulfite</option>
+            <option value="10">Tree Nut</option>
+            <option value="11">Wheat</option>
+        </select>
+
+    
+    <div id="apiCall">
+
+    </div>
+    
+    <footer class="footer mt-auto sticky">
+        <div class="container">
+            <span class="text-muted">Footer</span>
+        </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <!-- <script src="home-page.js"></script> -->
+
+</body>
+
+</html>
