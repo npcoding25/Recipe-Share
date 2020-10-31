@@ -48,7 +48,7 @@ const orm = {
     },
     // select one 
     getOne: function(tableInput, condition, cb) {
-        const queryString = "SELECT * FROM " + tableInput + "WHERE " + condition + ";";
+        const queryString = "SELECT * FROM " + tableInput + " WHERE " + condition + ";";
         connection.query(queryString, (err, result) => {
             if (err) {
                 throw err;
