@@ -1,5 +1,5 @@
 // Import the ORM to create functions that will interact with the database.
-const orm = require("orm.js");
+const orm = require("./orm.js");
 
 const ormFunctions = {
     selectAllRecipes: function(cb) {

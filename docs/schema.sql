@@ -1,10 +1,11 @@
+-- DROP DATABASE IF EXISTS fooddb;
 CREATE DATABASE fooddb;
 USE fooddb;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
 CREATE TABLE IF NOT EXISTS user(
-`id` INTEGER NOT NULL,
+`id` INTEGER AUTO_INCREMENT NOT NULL,
 `username` varchar(255) NOT NULL,
 `password` varchar(255) NOT NULL,
 PRIMARY KEY (id),
@@ -12,7 +13,7 @@ PRIMARY KEY (id),
 );
 
 CREATE TABLE IF NOT EXISTS recipe (
-    `recipe_id` INTEGER PRIMARY KEY,
+    `recipe_id` INTEGER AUTO_INCREMENT PRIMARY KEY,
     `frequency` ENUM('danger','primary','secondary') DEFAULT 'primary', /* using bootstrap class as priority colouring */
     `title` VARCHAR(255) NOT NULL,
     `user_id` INTEGER NOT NULL,
