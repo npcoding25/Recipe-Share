@@ -13,8 +13,8 @@ function searchRecipe() {
     cuisineType = $('.cuisineType').val()
     intolerance = $('#intolerance').val()
     foodItem = $('#foodItem').val()
-    const cuisine = (cuisineType=='All') ? '' : `&cuisine=${cuisineType}`
-    const intolerances = (intolerance=='None') ? '' : `&intolerances=${intolerance}`
+    const cuisine = (cuisineType=='all') ? '' : `&cuisine=${cuisineType}`
+    const intolerances = (intolerance=='none') ? '' : `&intolerances=${intolerance}`
     const food = `&query=${foodItem}`
     let settings = {
         "async": true,
