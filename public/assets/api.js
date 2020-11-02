@@ -47,7 +47,7 @@ function searchRecipe() {
 
             let recipe = {
                 title: results[i].title,
-                description: `Estimated time: ${results[i].readyInMinutes} min\nServings: ${results[i].servings}`,
+                description: `Estimated time: ${results[i].readyInMinutes} min<br>Servings: ${results[i].servings}`,
                 sourceUrl: results[i].sourceUrl,
                 imageUrl: response.baseUri + results[i].image
             };
@@ -111,7 +111,7 @@ function searchRecipeIngredients() {
                     `);
                     let recipe = {
                         title: response.title,
-                        description: `Estimated time: ${response.readyInMinutes} min\nServings: ${response.servings}`,
+                        description: `Estimated time: ${response.readyInMinutes} min<br>Servings: ${response.servings}`,
                         sourceUrl: response.sourceUrl,
                         imageUrl: response.image
                     };
@@ -128,5 +128,11 @@ function searchRecipeIngredients() {
 function saveRecipe(event) {
     event.preventDefault();
     let recipe = $(event.target).data();
-    console.log(`[saveRecipe]`, recipe);
+    let userId = localStorage.loginUser || '';
+    console.log(`[saveRecipe]`, recipe, userId);
+    if (userId) {
+        $.post(`/api/recipe/${userId}`, recipe, function (result) {
+            alert('Recipe Saved!');
+        });
+    }
 }
