@@ -1,6 +1,3 @@
-# Project #2 Recipe Share
-
-Recipe share is an application where users can search for, and share their own recipes on a single platform. When users create an account, they will have the option to “save” recipes for later.
 
 ## Installation
 You need to create the database and setup the .env to run this. 

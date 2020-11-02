@@ -60,12 +60,32 @@ h1 {
     font-family: 'Nanum Myeongjo', serif;
     color: white; 
 }
+.card-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    justify-content: center;
+    margin-left: 7%;
+}
 .page-footer {
     background-color: #ffe6e6;
     font-family: 'Nanum Myeongjo', serif;
     color: #804000;
 }
-
+.card-img-top {
+    height: 200px;
+    width: auto;
+}
+@media only screen and (max-width: 800px) {
+    .card-group {
+        grid-template-columns: 1fr 1fr;
+    }
+} 
+@media only screen and (max-width: 500px) {
+    .card-group {
+        grid-template-columns: 1fr;
+    }
+}
 /* Responsive navigation menu (for mobile devices) */
 @media screen and (max-width: 600px) {
 
