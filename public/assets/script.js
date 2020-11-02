@@ -1,4 +1,4 @@
-let loginUser = '';
+let loginUser = localStorage.loginUser || '';
 let action, loginData;
 
 let loginForm = $(`<div style="position: absolute; top: 80px; right: 80px; width: 200px; height: 200px; border: 3px solid pink;">
@@ -47,9 +47,11 @@ function NewUser() { // Create new user
     $.post('/api/user', loginData, function (result) {
         $('#loginStatus').text(result.message);
         loginUser = result.userId;
+        localStorage.loginUser = loginUser;
         console.log(`[NewUser] userId=${loginUser}`);
         $('#login').text('Logout');
         setTimeout(() => loginForm.hide(), 1000);
+        UserRecipes();
     });
 }
 
@@ -60,9 +62,11 @@ function Login() {
             console.log('[login] success.', result);
             $('#loginStatus').text(result.message);
             loginUser = result.userId;
+            localStorage.loginUser = loginUser;
             console.log(`[Login] userId=${loginUser}`);
             $('#login').text('Logout');
             setTimeout(() => loginForm.hide(), 1000);
+            UserRecipes();
         })
         .fail(function(result) {
             console.log('[login] failure.');
@@ -87,11 +91,11 @@ function handleLogin(evt) {
 }
 
 function NewRecipe() {
-
-    const newRecipeTitle = $('#exampleFormControlInput2')
-    const newRecipeDescription = $('#exampleFormControlTextarea1')
-    const newRecipeUrl = $('.recipeURL')
-    const newRecipeImage = $('.imageURL')
+    console.log('[NewRecipe')
+    const newRecipeTitle = $('#exampleFormControlInput2').val()
+    const newRecipeDescription = $('#exampleFormControlTextarea1').val()
+    const newRecipeUrl = $('.recipeURL').val()
+    const newRecipeImage = $('.imageURL').val()
     // Post another recipe.
     data = {
         title: `${newRecipeTitle}`,
@@ -101,17 +105,18 @@ function NewRecipe() {
     };
     userId = loginUser;
     $.post(`/api/recipe/${userId}`, data, function (result) { // Optionally display message
-        recipeId = result.insertId; // save for delete
+        // go back to main page
+        window.location.href = '/';
     });
 }
 
 function AllRecipes() {
-
+    console.log('[AllRecipes]');
     // Get all recipes
     $.get('/api/recipe', function (result) {
+        $('#apiCall').html('');
         result.forEach(recipe => {
-            let curhtml = $('#apiCall').html();
-            $('#apiCall').prepend(curhtml += `           
+            $('#apiCall').prepend(`           
             <div class="card" style="width: 18rem;">
               <h5 class="card-title">${recipe.title}</h5>
               <img src="${recipe.imageUrl}" class="card-img-top" alt="...">
@@ -126,12 +131,13 @@ function AllRecipes() {
 }
 
 function UserRecipes() {
+    console.log('[UserRecipes]');
     // Get recipes by user
     userId = loginUser;
     $.get(`/api/recipe/${userId}`, function (result) {
+        $('#apiCall').html('');
         result.forEach(recipe => {
-            let curhtml = $('#apiCall').html();
-            $('#apiCall').prepend(curhtml += `
+            $('#apiCall').prepend(`
         <div class="card" style="width: 18rem;">
             <h5 class="card-title">${recipe.title}</h5>
             <img src="${recipe.imageUrl}" class="card-img-top" alt="...">
@@ -160,4 +166,10 @@ $('#login').on('click', popUpLogin);
 $('#postbtn').on('click', NewRecipe);
 $('#homeTitle').on('click', AllRecipes);
 $('#homeTitle').on('click', UserRecipes);
-$('#deleteBtn').on('click', DelRecipes);
+$('#deleteBtn').on('click', DelRecipe);
+
+if (loginUser) {
+    UserRecipes();
+} else {
+    AllRecipes();
+}
