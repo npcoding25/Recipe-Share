@@ -31,17 +31,29 @@ function searchRecipe() {
         console.log(response)
         const results = response.results
         for (let i = 0; i < results.length; i++) {
-            $('#apiCall').prepend(`
+
+            let newCard = $(`
             <div class="card" style="width: 18rem;">
-                <h5 class="card-title">${results[i].title}</h5>
+                <h5 id class="card-title">${results[i].title}</h5>
                 <img src="${response.baseUri + results[i].image}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">Estimated time: ${results[i].readyInMinutes} min</p>
                     <p class="card-text"> Servings: ${results[i].servings}
                     <a href="${results[i].sourceUrl}" class="btn btn-primary">See Recipe</a>
                 </div>
+                <button id="saveRecipe" onClick="saveRecipe(event)">Save Recipe</button>
             </div>
             `)
+
+            let recipe = {
+                title: results[i].title,
+                description: `Estimated time: ${results[i].readyInMinutes} min\nServings: ${results[i].servings}`,
+                sourceUrl: results[i].sourceUrl,
+                imageUrl: response.baseUri + results[i].image
+            };
+
+            newCard.find('button').data(recipe);
+            $('#apiCall').prepend(newCard);
         }
     });
 }
@@ -85,7 +97,7 @@ function searchRecipeIngredients() {
 
                 $.ajax(settings).done(function (response) {
                     console.log(response);
-                    $('#apiCall').prepend(`
+                    let newCard = $(`
                     <div class="card" style="width: 18rem;">
                         <h5 class="card-title">${response.title}</h5>
                         <img src="${response.image}" class="card-img-top" alt="...">
@@ -94,12 +106,27 @@ function searchRecipeIngredients() {
                             <p class="card-text"> Servings: ${response.servings}
                             <a href="${response.sourceUrl}" class="btn btn-primary">See Recipe</a>
                         </div>
+                        <button id="saveRecipe" onClick="saveRecipe(event)">Save Recipe</button>
                     </div>
-                    `)
+                    `);
+                    let recipe = {
+                        title: response.title,
+                        description: `Estimated time: ${response.readyInMinutes} min\nServings: ${response.servings}`,
+                        sourceUrl: response.sourceUrl,
+                        imageUrl: response.image
+                    };
+                    newCard.find('button').data(recipe);
+                    $('#apiCall').prepend(newCard);
                 });
             }
             getRecipeInfo()
         }
 
     });
+}
+
+function saveRecipe(event) {
+    event.preventDefault();
+    let recipe = $(event.target).data();
+    console.log(`[saveRecipe]`, recipe);
 }
