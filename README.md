@@ -17,9 +17,9 @@ node server.js
 
 open browser to http://localhost:3000
 
-## Deployment to Heroku
+## Links:
 Deployed at: 
-
+Presentation slides: https://docs.google.com/presentation/d/1mzwqSG5l1ccwJvd59UCrqDW_1Mcoga7kNdNsRl2DfMc/edit#slide=id.ga6d2717754_2_99
 ## Screenshots:
 * ![alt text](./public/assets/homepage.png)
 * ![alt text](./public/assets/post.png)
