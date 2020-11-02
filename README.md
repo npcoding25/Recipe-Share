@@ -24,7 +24,8 @@ open browser to http://localhost:3000
 Deployed at: 
 
 ## Screenshots:
-
+* ![alt text](./public/assets/homepage.png)
+* ![alt text](./public/assets/post.png)
 ## Stylistic Notes
 This code has been written towards keeping it clean and simple, yet self-explanatory.
 
