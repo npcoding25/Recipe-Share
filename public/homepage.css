@@ -2,6 +2,7 @@ body {
     margin: 0;
     color: #804000;
     font-family: 'Nanum Myeongjo', serif;
+    text-align: center;
 }
 
 .topnav {
@@ -47,10 +48,9 @@ h1 {
 .form-control {
     text-align: center;
 }
-.form-inline {
-    align-content: center;
+.Search-Form {
+    display: inline-block;
 }
-
 .row {
     margin-left: 8%;
     margin-right: 8%;
@@ -58,7 +58,7 @@ h1 {
 .btn {
     background-color: #804000;
     font-family: 'Nanum Myeongjo', serif;
-    color: white 
+    color: white; 
 }
 .page-footer {
     background-color: #ffe6e6;
