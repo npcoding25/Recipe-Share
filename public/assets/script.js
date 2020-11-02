@@ -1,7 +1,7 @@
 let loginUser = localStorage.loginUser || '';
 let action, loginData;
 
-let loginForm = $(`<div style="position: absolute; top: 80px; right: 80px; width: 200px; height: 200px; border: 3px solid pink;">
+let loginForm = $(`<div style="position: absolute; top: 80px; right: 80px; height: 200px; border: 3px solid pink;">
     <div class="m-2" style="background-color: #ffe6e6;">
       <label for="loginUsername">Username</label><br>
       <input type="text" id="loginUsername" placeholder="username"><br>
