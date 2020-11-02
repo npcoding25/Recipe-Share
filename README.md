@@ -1,3 +1,5 @@
+## Description
+Recipe Share is an application where users can search for, and share their own recipes on a single platform. When users create an account, they will have the option to “save” recipes for later and add their own concoctions to the food blog.
 
 ## Installation
 You need to create the database and setup the .env to run this. 
@@ -18,11 +20,12 @@ node server.js
 open browser to http://localhost:3000
 
 ## Links:
-Deployed at: 
-Presentation slides: https://docs.google.com/presentation/d/1mzwqSG5l1ccwJvd59UCrqDW_1Mcoga7kNdNsRl2DfMc/edit#slide=id.ga6d2717754_2_99
+* Deployed at: https://recipe-share-team-one.herokuapp.com/
+* Presentation slides: https://docs.google.com/presentation/d/1mzwqSG5l1ccwJvd59UCrqDW_1Mcoga7kNdNsRl2DfMc/edit#slide=id.ga6d2717754_2_99
 ## Screenshots:
-* ![alt text](./public/assets/homepage.png)
-* ![alt text](./public/assets/post.png)
+* Home Page: ![alt text](./public/assets/homepage.png)
+* Post Recipe Page: ![alt text](./public/assets/post.png)
+* Search results: ![alt text](./public/assets/search.png)
 ## Stylistic Notes
 This code has been written towards keeping it clean and simple, yet self-explanatory.
 
