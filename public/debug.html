@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 2 Debug</title>
+  <style> h3 { color: green; }</style>
+</head>
+<body>
+  <h1>Project 2 Debug</h1>
+  <h2>Using Javascript Fetch</h3>
+  <h3 onClick='jsNewUser()'>Sign Up</h3>
+  <p id="jsNewUser"></p>
+  <h3 onClick='jsLogin()'>Login</h3>
+  <p id="jsLogin"></p>
+  <h3 onClick='jsNewRecipe()'>New Recipe</h3>
+  <p id="jsNewRecipe"></p> 
+  <h3 onClick='jsAllRecipes()'>All Recipes</h3>
+  <p id="jsAllRecipes"></p>
+  <h3 onClick='jsUserRecipes()'>User 1 Recipes</h3>
+  <p id="jsUserRecipes"></p>
+  <h3 onClick='jsDelRecipe()'>(Optional) Delete Recipe</h3>
+  <p id="jsDelRecipe"></p> 
+  <h3 onClick='jsUserRecipesAfterDel()'>User 1 Recipes (After Del)</h3>
+  <p id="jsUserRecipesAfterDel"></p>
+  <h2>Using jQuery</h3>
+  <h3 onClick='jQueryNewUser()'>Sign Up</h3>
+  <p id="jQueryNewUser"></p>  
+  <h3 onClick='jQueryLogin()'>Login</h3>
+  <p id="jQueryLogin"></p>
+  <h3 onClick='jQueryNewRecipe()'>New Recipe</h3>
+  <p id="jQueryNewRecipe"></p>
+  <h3 onClick='jQueryAllRecipes()'>All Recipes</h3>
+  <p id="jQueryAllRecipes"></p>
+  <h3 onClick='jQueryUserRecipes()'>User 1 Recipes</h3>
+  <p id="jQueryUserRecipes"></p>
+  <h3 onClick='jQueryDelRecipe()'>(Optional) Delete Recipe</h3>
+  <p id="jQueryDelRecipe"></p>
+  <h3 onClick='jQueryUserRecipesAfterDel()'>User 1 Recipes (After Del)</h3>
+  <p id="jQueryUserRecipesAfterDel"></p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
+  <script>
+    // (pure) Javascript way
+    async function fetchJSON(url, method = 'get', data = {}) {
+      let settings = {
+        method,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      // only attach the body for put/post
+      if (method === 'post' || method === 'put') {
+        settings.body = JSON.stringify(data)
+      }
+
+      const result = await fetch(url, settings).then(res => res.json())
+
+      /* put the api result message onto the screen as a message if it exists */
+      // if( result.status && result.message ){
+      //     const apiResultEl = document.querySelector('#apiMessage')
+      //     apiResultEl.innerHTML = result.message
+      //     apiResultEl.classList.remove( 'd-none' )
+      //     console.log( 'showing message: '+ result.message )
+      //     setTimeout( function(){
+      //         apiResultEl.classList.add( 'd-none' )
+      //     }, 5000 )
+      // } else if( !result.status && result.message ){
+      //     alert( 'Problems: ' + result.message )
+      // }
+
+      return result
+    }
+    let result, data, userId, recipeId;
+
+    async function jsNewUser() { // Create new user
+      data = {
+        username: 'frank',
+        password: '123456'
+      };
+      result = await fetchJSON('/api/user', 'post', data);
+      // Optionally display message
+      document.querySelector('#jsNewUser').innerHTML = result.message;
+    }
+
+    async function jsLogin() { // Login user
+      result = await fetchJSON('/api/userAuth', 'post', data);
+      // Optionally display message
+      document.querySelector('#jsLogin').innerHTML = result.message;
+    }
+
+    async function jsNewRecipe() { // Post recipe
+      data = {
+        title: 'Chicken roti',
+        description: 'Chicken roti',
+        sourceUrl: 'http://roti.com/recipe/chicken',
+        imageUrl: 'http://roti.com/recipe/chicken_roti.jpg'
+      };
+      userId = 1;
+      result = await fetchJSON(`/api/recipe/${userId}`, 'post', data);
+      // Optionally display message
+      document.querySelector('#jsNewRecipe').innerHTML = result.message;
+      recipeId = result.insertId; // save for delete
+    }
+
+    // async function jsNewRecipe() {
+    //     // Post another recipe.
+    //     data = { title: 'Guacamole', description: 'Guacamole recipe',
+    //               sourceUrl: 'https://www.allrecipes.com/recipe/14231/guacamole',
+    //               imageUrl: 'https://via.placeholder.com/350' };
+    //     userId = 1;
+    //     result = await fetchJSON(`/api/recipe/${userId}`, 'post', data);
+    //     // Optionally display message
+    //     document.querySelector('#jsNewRecipe').innerHTML += `<br>${result.message}`;
+    //     recipeId = result.insertId; // save for delete
+    // }
+
+    async function jsAllRecipes() { // Get all recipes
+      result = await fetchJSON('/api/recipe');
+      result.forEach(recipe => {
+        document.querySelector('#jsAllRecipes').innerHTML += `${recipe.title}: ${recipe.sourceUrl}<br>`;
+      });
+    }
+
+    async function jsUserRecipes() { // Get recipes by user
+      userId = 1;
+      result = await fetchJSON(`/api/recipe/${userId}`);
+      result.forEach(recipe => {
+        document.querySelector('#jsUserRecipes').innerHTML += `${recipe.title}: ${recipe.sourceUrl}<br>`;
+      });
+    }
+
+    async function jsDelRecipe() { // Optional: delete recipe
+      result = await fetchJSON(`/api/recipe/${recipeId}`, 'delete');
+      // Optionally display message
+      document.querySelector('#jsDelRecipe').innerHTML = result.message;
+    }
+
+    async function jsUserRecipesAfterDel() { // Get recipes by user
+      userId = 1;
+      result = await fetchJSON(`/api/recipe/${userId}`);
+      result.forEach(recipe => {
+        document.querySelector('#jsUserRecipesAfterDel').innerHTML += 
+          `${recipe.title}: ${recipe.sourceUrl}<br>`;
+      });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // jQuery
+    function jQueryNewUser() { // Create new user
+      data = {
+        username: 'pablo',
+        password: '123456'
+      };
+      $.post('/api/user', data, function (result) { // Optionally display message
+        $('#jQueryNewUser').text(result.message);
+      });
+    }
+
+    function jQueryLogin() {
+      // Login user
+      $.post('/api/userAuth', data, function (result) { // Optionally display message
+        $('#jQueryLogin').text(result.message);
+      });
+    }
+
+    // function jQueryNewRecipe() {
+    //   // Post recipe
+    //   data = {
+    //     title: 'Veggie roti',
+    //     description: 'Veggie roti',
+    //     sourceUrl: 'http://roti.com/recipe/veggie',
+    //     imageUrl: 'http://roti.com/recipe/veggie_roti.jpg'
+    //   };
+    //   userId = 1;
+    //   $.post(`/api/recipe/${userId}`, data, function (result) { // Optionally display message
+    //     $('#jQueryNewRecipe').text(result.message);
+    //   });
+    // }
+
+    function jQueryNewRecipe() {
+      // Post another recipe.
+      data = {
+        title: 'Stuffed Jack-O-Lantern Bell Peppers',
+        description: 'Halloween treats',
+        sourceUrl: 'https://www.allrecipes.com/recipe/180596/stuffed-jack-o-lantern-bell-peppers/',
+        imageUrl: 'https://via.placeholder.com/350'
+      };
+      userId = 1;
+      $.post(`/api/recipe/${userId}`, data, function (result) { // Optionally display message
+        $('#jQueryNewRecipe').text(result.message);
+        recipeId = result.insertId; // save for delete
+      });
+    }
+
+    function jQueryAllRecipes() {
+      // Get all recipes
+      $.get('/api/recipe', function (result) {
+        result.forEach(recipe => {
+          let curhtml = $('#jQueryAllRecipes').html();
+          $('#jQueryAllRecipes').html(curhtml += `${recipe.title}: ${recipe.sourceUrl}<br>`);
+        });
+      });
+    }
+
+    function jQueryUserRecipes() {
+      // Get recipes by user
+      userId = 1;
+      $.get(`/api/recipe/${userId}`, function (result) {
+        result.forEach(recipe => {
+          let curhtml = $('#jQueryUserRecipes').html();
+          $('#jQueryUserRecipes').html(curhtml += `${recipe.title}: ${recipe.sourceUrl}<br>`);
+        });
+      });
+    }
+
+    function jQueryDelRecipe() {
+      // Optional: delete recipe
+      $.ajax({
+          url: `/api/recipe/${recipeId}`, 
+          method: 'DELETE'
+      }).then(function (result) { // Optionally display message
+        $('#jQueryDelRecipe').text(result.message);
+      });
+    }
+
+    function jQueryUserRecipesAfterDel() {
+      // Get recipes by user
+      userId = 1;
+      $.get(`/api/recipe/${userId}`, function (result) {
+        result.forEach(recipe => {
+          let curhtml = $('#jQueryUserRecipesAfterDel').html();
+          $('#jQueryUserRecipesAfterDel').html(curhtml += `${recipe.title}: ${recipe.sourceUrl}<br>`);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
