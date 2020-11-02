@@ -2,45 +2,20 @@ let loginUser = localStorage.loginUser || '';
 let action, loginData;
 
 let loginForm = $(`<div style="position: absolute; top: 80px; right: 80px; width: 200px; height: 200px; border: 3px solid pink;">
-    <div class="m-2">
+    <div class="m-2" style="background-color: #ffe6e6;">
       <label for="loginUsername">Username</label><br>
       <input type="text" id="loginUsername" placeholder="username"><br>
       <label for="loginPassword">Password</label><br>
       <input type="password" id="loginPassword" placeholder="password"><br>
       <button type="submit" onClick="handleLogin(event)">Login</button>
-      <div id="loginStatus">&nbsp;</div>
+      <div id="loginStatus" style="background-color: #ffe6e6;">&nbsp;</div>
     </div>
   </div>`);
 loginForm.hide().appendTo(document.body);
 
 function clearLoginForm() {
     loginForm.find('input').val('');
-    loginForm.find('#loginStatus').text('');
-}
-
-function popUpSignUp(evt) {
-    evt.preventDefault();
-    clearLoginForm();
-    action = evt.target.textContent.trim();
-    console.log(`[popUpSignUp] action='${action}'`);
-    // change button text to 'SignUp'
-    loginForm.find('button').text('Sign Up');
-    loginForm.show();
-}
-
-function popUpLogin(evt) {
-    evt.preventDefault();
-    clearLoginForm();
-    action = evt.target.textContent.trim();
-    console.log(`[popUpLogin] action='${action}'`);
-    if (action == 'Logout') {
-        console.log('Changing to Login');
-        $('#login').text('Login');
-    } else {
-        // change button text to 'Login'
-        loginForm.find('button').text('Login');
-        loginForm.show();
-    }
+    loginForm.find('#loginStatus').html('&nbsp;');
 }
 
 function NewUser() { // Create new user
@@ -91,7 +66,7 @@ function handleLogin(evt) {
 }
 
 function NewRecipe() {
-    console.log('[NewRecipe')
+    console.log('[NewRecipe]')
     const newRecipeTitle = $('#exampleFormControlInput2').val()
     const newRecipeDescription = $('#exampleFormControlTextarea1').val()
     const newRecipeUrl = $('.recipeURL').val()
@@ -104,10 +79,16 @@ function NewRecipe() {
         imageUrl: `${newRecipeImage}`
     };
     userId = loginUser;
-    $.post(`/api/recipe/${userId}`, data, function (result) { // Optionally display message
+    if (userId) {
+        $.post(`/api/recipe/${userId}`, data, function (result) { // Optionally display message
+            // go back to main page
+            window.location.href = '/';
+        });
+    } else {
+        alert('Please login first!');
         // go back to main page
         window.location.href = '/';
-    });
+    }
 }
 
 function AllRecipes() {
@@ -122,7 +103,7 @@ function AllRecipes() {
               <img src="${recipe.imageUrl}" class="card-img-top" alt="...">
               <div class="card-body">
                 <p class="card-text">${recipe.description}</p>
-                <a href="${recipe.sourceUrl}" class="btn btn-primary">Go somewhere</a>
+                <a href="${recipe.sourceUrl}" class="btn btn-primary">See Recipe</a>
               </div>
             </div>
             `);
@@ -143,7 +124,8 @@ function UserRecipes() {
             <img src="${recipe.imageUrl}" class="card-img-top" alt="...">
             <div class="card-body">
                 <p class="card-text">${recipe.description}</p>
-                <a href="${recipe.sourceUrl}" class="btn btn-primary">Go somewhere</a>
+                <a href="${recipe.sourceUrl}" class="btn btn-primary">See Recipe</a>
+                <button onClick="DelRecipe(${recipe.recipe_id})" class="btn btn-primary">Delete</button>
             </div>
         </div>
         `);
@@ -151,14 +133,42 @@ function UserRecipes() {
     });
 }
 
-function DelRecipe() {
+function DelRecipe(recipeId) {
     // Optional: delete recipe
     $.ajax({
         url: `/api/recipe/${recipeId}`,
         method: 'DELETE'
     }).then(function (result) { // Optionally display message
-        console.log(result)
+        UserRecipes();
     });
+}
+
+function popUpSignUp(evt) {
+    evt.preventDefault();
+    clearLoginForm();
+    action = evt.target.textContent.trim();
+    console.log(`[popUpSignUp] action='${action}'`);
+    // change button text to 'SignUp'
+    loginForm.find('button').text('Sign Up');
+    loginForm.show();
+}
+
+function popUpLogin(evt) {
+    evt.preventDefault();
+    clearLoginForm();
+    action = evt.target.textContent.trim();
+    console.log(`[popUpLogin] action='${action}'`);
+    if (action === 'Logout') {
+        loginUser = '';
+        localStorage.removeItem('loginUser');
+        console.log('Changing to Login');
+        $('#login').text('Login');
+        AllRecipes();
+    } else {
+        // change button text to 'Login'
+        loginForm.find('button').text('Login');
+        loginForm.show();
+    }
 }
 
 $('#signup').on('click', popUpSignUp);
@@ -169,6 +179,7 @@ $('#homeTitle').on('click', UserRecipes);
 $('#deleteBtn').on('click', DelRecipe);
 
 if (loginUser) {
+    $('#login').text('Logout');
     UserRecipes();
 } else {
     AllRecipes();
