@@ -33,7 +33,7 @@ function NewUser() { // Create new user
     const newRecipeTitle = $('#exampleFormControlInput2')
     const newRecipeDescription = $('#exampleFormControlTextarea1')
     const newRecipeUrl = $('.recipeURL')
-    const newRecipeImage = $('.imageBtn')
+    const newRecipeImage = $('.imageURL')
     // Post another recipe.
     data = {
       title: `${newRecipeTitle}`,
