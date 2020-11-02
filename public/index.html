@@ -4,180 +4,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel App</title>
+    <title>Recipe Share</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+
+    <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
+
+    <!--CSS Stylesheet-->
     <script src="./assets/api.js"></script>
+    <link rel="stylesheet" href="homepage.css" <!-- Google fonts links -->
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    <!-- NAVBAR -->
+    <div class="topnav">
 
-        .topnav {
-            position: relative;
-            overflow: hidden;
-            ;
-        }
+        <!-- Centered link -->
 
-        .topnav a {
-            float: left;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .topnav a.active {
-            color: black;
-            font-size: 30px;
-        }
-
-        .topnav-centered a {
-            float: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .topnav-right {
-            float: right;
-        }
-
-        .form-control {
-            text-align: center;
-        }
-
-        /* Responsive navigation menu (for mobile devices) */
-        @media screen and (max-width: 600px) {
-
-            .topnav a,
-            .topnav-right {
-                float: none;
-                display: block;
-            }
-
-            .topnav-centered a {
-                position: relative;
-                top: 0;
-                left: 0;
-                transform: none;
-            }
-        }
-    </style>
-    </head>
-
-    <body>
-
-        <!-- Top navigation -->
-        <div class="topnav">
-
-            <!-- Centered link -->
-
-            <div class="topnav-centered">
-                <a href="#home" class="active">Food Blog</a>
-            </div>
-
-            <!-- Left-aligned links (default) -->
-
-
-            <!-- Right-aligned links -->
-            <div class="topnav-right">
-                <a href="#search">Sign Up</a>
-                <a href="#about">Login</a>
-            </div>
+        <div class="topnav-centered">
+            <a href="#home" class="active">Recipe Share</a>
         </div>
-        </body>
-    </body>
 
-    </br>
+        <!-- Left-aligned links (default) -->
+        <div class="topnav-left">
+            <a href="postrecipe.html">Post Your Recipe</a>
+        </div>
 
-    <div style="padding-left:16px">
-        <h2>An awesome blog where you can search and post recipes!</h2>
-
+        <!-- Right-aligned links -->
+        <div class="topnav-right">
+            <a href="#search">Sign Up</a>
+            <a href="#about">Login</a>
+        </div>
     </div>
 
-    </br>
-    <form class="form-inline my-8 my-lg-8">
-        <input id="foodItem" class="form-control col-8" type="search" placeholder="Search for a recipe" aria-label="Search">
-        <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-
-        <!-- <button id="cuisineType" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Cuisines"></button> -->
-        <select id="cuisineType" class="custom-select">
-            <option>African</option>
-            <option>Chinese</option>
-            <option>Korean</option>
-            <option>Vietnamese</option>
-            <option>Thai</option>
-            <option>Indian</option>
-            <option>British</option>
-            <option>Irish</option>
-            <option>French</option>
-            <option>Italian</option>
-            <option>Mexican</option>
-            <option>Spanish</option>
-            <option>Middle Eastern</option>
-            <option>Jewish</option>
-            <option>American</option>
-            <option>Cajun</option>
-            <option>Southern</option>
-            <option>Greek</option>
-            <option>German</option>
-            <option>Nordic</option>
-            <option>Eastern European</option>
-            <option>Caribbean</option>
-            <option>Latin American</option>
-        </select>
-<!-- 
-        <button id="intolerance" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Intolerances"></button> -->
-        <select id="intolerance" class="custom-select">
-            <option>Dairy</option>
-            <option>Egg</option>
-            <option>Gluten</option>
-            <option>Peanut</option>
-            <option>Sesame</option>
-            <option>Seafood</option>
-            <option>Shellfish</option>
-            <option>Soy</option>
-            <option>Sulfite</option>
-            <option>Tree Nut</option>
-            <option>Wheat</option>
-        </select>
-
-    
-    </form>
-    
-    <div id="apiCall">
-
-    </div>
-    
-    <footer class="footer mt-auto sticky">
+    <!--Jumbotron-->
+    <div class="jumbotron bg-cover text-center"
+        style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://images.creativemarket.com/0.1.0/ps/3667915/1820/1213/m1/fpnw/wm1/nmzbxenrvudgiuql2gecymrkchyewfixbljlnhzfmcee5aog6m0o0146ltenmjts-.jpg?1512111126&s=a0f29bafb9e6269216b2d15c0786bdb0)">
         <div class="container">
-            <span class="text-muted">Footer</span>
+            <h1 class="display-4">Recipe Search & Share</h1>
+            <p class="lead">Use the search bar below to look for a recipe online, or browse our Recipe Blog to see what
+                homemade recipes others have shared.</p>
         </div>
 
+        <br>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-    <!-- <script src="home-page.js"></script> -->
+        <!--Jumbotron Search Form-->
+        <form class="form-inline my-8 my-lg-8">
+            <input id="foodItem" class="form-control col-8" type="search" placeholder="Search for a recipe"
+                aria-label="Search">
+            <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <!-- <button id="cuisineType" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Cuisines"></button> -->
+            <select id="cuisineType" class="custom-select" placeholder="Cuisine Type">
+                <option value="all">Cuisine Type - All</option>
+                <option value="african">African</option>
+                <option value="chinese">Chinese</option>
+                <option value="korean">Korean</option>
+                <option value="vietnamese">Vietnamese</option>
+                <option value="thai">Thai</option>
+                <option value="indian">Indian</option>
+                <option value="british">British</option>
+                <option value="irish">Irish</option>
+                <option value="french">French</option>
+                <option value="italian">Italian</option>
+                <option value="mexican">Mexican</option>
+                <option value="spanish">Spanish</option>
+                <option value="middle+eastern">Middle Eastern</option>
+                <option value="jewish">Jewish</option>
+                <option value="american">American</option>
+                <option value="cajun">Cajun</option>
+                <option value="southern">Southern</option>
+                <option value="greek">Greek</option>
+                <option value="german">German</option>
+                <option value="nordic">Nordic</option>
+                <option value="eastern+european">Eastern European</option>
+                <option value="caribbean">Caribbean</option>
+                <option value="latin+american">Latin American</option>
+            </select>
+            <!-- 
+                <button id="intolerance" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Intolerances"></button> -->
+            <select id="intolerance" class="custom-select">
+                <option value="none">Intolerances - None</option>
+                <option value="dairy">Intolerance - Dairy</option>
+                <option value="egg">Intolerance - Egg</option>
+                <option value="gluten">Intolerance - Gluten</option>
+                <option value="peanut">Intolerance - Peanuts</option>
+                <option value="sesame">Intolerance - Sesame</option>
+                <option value="seafood">Intolerance - Seafood</option>
+                <option value="shellfish">Intolerance - Shellfish</option>
+                <option value="soy">Intolerance - Soy</option>
+                <option value="sulfite">Intolerance - Sulfite</option>
+                <option value="tree+nut">Intolerance - Tree Nuts</option>
+                <option value="wheat">Intolerance - Wheat</option>
+            </select>
+            <br></br>
+            <input id="ingredientItems" class="form-control col-8" type="search"
+                placeholder="Search for a recipe by ingredient..." aria-label="Search">
+            <button id="searchBtnIngredients" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+        </form>
+
+        <div id="apiCall"></div>
+    </div>
+
+    <div class="results-container">
+        <h5>
+            <center> Results </center>
+        </h5>
+
+        <br>
+    </div>
+
+</body>
+
+<br></br>
+
+<footer class="page-footer font-small black pt-4">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright Recipe Share</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+<!-- <script src="home-page.js"></script> -->
 
 </body>
 
