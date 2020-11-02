@@ -1,32 +1,90 @@
-let loginUser = ''
+let loginUser = '';
+let action, loginData;
 
-$('#signUp').on('click', NewUser())
-$('#login').on('click', Login())
-$('#postbtn').on('click', NewRecipe())
-$('#homeTitle').on('click', AllRecipes())
-$('#homeTitle').on('click', UserRecipes())
-$('#deleteBtn').on('click', DelRecipes())
+let loginForm = $(`<div style="position: absolute; top: 80px; right: 80px; width: 200px; height: 200px; border: 3px solid pink;">
+    <div class="m-2">
+      <label for="loginUsername">Username</label><br>
+      <input type="text" id="loginUsername" placeholder="username"><br>
+      <label for="loginPassword">Password</label><br>
+      <input type="password" id="loginPassword" placeholder="password"><br>
+      <button type="submit" onClick="handleLogin(event)">Login</button>
+      <div id="loginStatus">&nbsp;</div>
+    </div>
+  </div>`);
+loginForm.hide().appendTo(document.body);
+
+function clearLoginForm() {
+    loginForm.find('input').val('');
+    loginForm.find('#loginStatus').text('');
+}
+
+function popUpSignUp(evt) {
+    evt.preventDefault();
+    clearLoginForm();
+    action = evt.target.textContent.trim();
+    console.log(`[popUpSignUp] action='${action}'`);
+    // change button text to 'SignUp'
+    loginForm.find('button').text('Sign Up');
+    loginForm.show();
+}
+
+function popUpLogin(evt) {
+    evt.preventDefault();
+    clearLoginForm();
+    action = evt.target.textContent.trim();
+    console.log(`[popUpLogin] action='${action}'`);
+    if (action == 'Logout') {
+        console.log('Changing to Login');
+        $('#login').text('Login');
+    } else {
+        // change button text to 'Login'
+        loginForm.find('button').text('Login');
+        loginForm.show();
+    }
+}
 
 function NewUser() { // Create new user
-
-    let username = $('#loginUsername')
-    let password = $('#loginPassword')
-    data = {
-        username: `${username}`,
-        password: `${password}`
-    };
-    $.post('/api/user', data, function (result) { // Optionally display message
-        loginUser = result.insertId
+    $.post('/api/user', loginData, function (result) {
+        $('#loginStatus').text(result.message);
+        loginUser = result.userId;
+        console.log(`[NewUser] userId=${loginUser}`);
+        $('#login').text('Logout');
+        setTimeout(() => loginForm.hide(), 1000);
     });
 }
 
 function Login() {
     // Login user
-    $.post('/api/userAuth', data, function (result) { // Optionally display message
-        loginUser = result.insertId
-    });
+    $.post('/api/userAuth', loginData)
+        .done(function (result) {
+            console.log('[login] success.', result);
+            $('#loginStatus').text(result.message);
+            loginUser = result.userId;
+            console.log(`[Login] userId=${loginUser}`);
+            $('#login').text('Logout');
+            setTimeout(() => loginForm.hide(), 1000);
+        })
+        .fail(function(result) {
+            console.log('[login] failure.');
+            //$('#loginStatus').text(result.responseJSON.message);
+            $('#loginStatus').text('Login Failed.');
+            setTimeout(() => loginForm.hide(), 1000);
+        });
 }
 
+function handleLogin(evt) {
+    evt.preventDefault();
+    console.log('[handleLogin]');
+    loginData = {
+        username: `${$('#loginUsername').val()}`,
+        password: `${$('#loginPassword').val()}`
+    };
+    if (action==='Sign Up') {
+        NewUser();
+    } else if (action==='Login') {
+        Login();
+    }
+}
 
 function NewRecipe() {
 
@@ -96,3 +154,10 @@ function DelRecipe() {
         console.log(result)
     });
 }
+
+$('#signup').on('click', popUpSignUp);
+$('#login').on('click', popUpLogin);
+$('#postbtn').on('click', NewRecipe);
+$('#homeTitle').on('click', AllRecipes);
+$('#homeTitle').on('click', UserRecipes);
+$('#deleteBtn').on('click', DelRecipes);

@@ -23,7 +23,7 @@ function router(app) {
         ormFunctions.insertUser(['username','password'],
             [req.body.username, hashedPswd],
             //[req.body.username, req.body.password],
-            (result) => res.send({ insertId: result.insertId, message: 'User added!' }));
+            (result) => res.send({ userId: result.insertId, message: 'User added!' }));
     });
 
     // POST /api/userAuth -> getUser(username) then compare
@@ -42,7 +42,7 @@ function router(app) {
             console.log('[selectUser]', result);
             // if (req.body.password === result[0].password) {
             if (passwordHash.verify(req.body.password, result[0].password)) {
-                res.send({ message: 'User Authenticated' });
+                res.json({ message: 'User Authenticated', userId: result[0].id });
             } else {
                 res.status(401).send({ message: 'User Authentication failed' });
                 console.log('[POST /api/userAuth] Authentication failed.');
