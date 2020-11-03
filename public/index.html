@@ -7,6 +7,7 @@
     <title>Recipe Share</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="icon"  href="./assets/favicon.ico" type="image/x-icon"/>
 
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -41,8 +42,8 @@
             <button id="signup" class="btn btn-link">Sign Up</button>
             <button id="login" class="btn btn-link">Login</button>
         </div>
+        <br>
     </div>
-
     <!--Jumbotron-->
     <div class="jumbotron bg-cover text-center"
         style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://images.creativemarket.com/0.1.0/ps/3667915/1820/1213/m1/fpnw/wm1/nmzbxenrvudgiuql2gecymrkchyewfixbljlnhzfmcee5aog6m0o0146ltenmjts-.jpg?1512111126&s=a0f29bafb9e6269216b2d15c0786bdb0)">
@@ -55,63 +56,65 @@
 
     <div class="Search-Form">
         <form class="form-inline my-8 my-lg-8">
-            <input id="foodItem" class="form-control col-6" type="search" placeholder="Search for a recipe..."
-                aria-label="Search">
-            <!-- <button id="cuisineType" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Cuisines"></button> -->
-            <select id="cuisineType" class="custom-select" placeholder="Cuisine Type">
-                <option value="all">Cuisine Type - All</option>
-                <option value="african">African</option>
-                <option value="chinese">Chinese</option>
-                <option value="korean">Korean</option>
-                <option value="vietnamese">Vietnamese</option>
-                <option value="thai">Thai</option>
-                <option value="indian">Indian</option>
-                <option value="british">British</option>
-                <option value="irish">Irish</option>
-                <option value="french">French</option>
-                <option value="italian">Italian</option>
-                <option value="mexican">Mexican</option>
-                <option value="spanish">Spanish</option>
-                <option value="middle+eastern">Middle Eastern</option>
-                <option value="jewish">Jewish</option>
-                <option value="american">American</option>
-                <option value="cajun">Cajun</option>
-                <option value="southern">Southern</option>
-                <option value="greek">Greek</option>
-                <option value="german">German</option>
-                <option value="nordic">Nordic</option>
-                <option value="eastern+european">Eastern European</option>
-                <option value="caribbean">Caribbean</option>
-                <option value="latin+american">Latin American</option>
-            </select>
-            <!-- 
+            <div class="row">
+                <input id="foodItem" class="form-control" type="search" placeholder="Search for a recipe..."
+                    aria-label="Search">
+                <!-- <button id="cuisineType" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Cuisines"></button> -->
+                <select id="cuisineType" class="custom-select" placeholder="Cuisine Type">
+                    <option value="all">Cuisine Type - All</option>
+                    <option value="african">African</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="korean">Korean</option>
+                    <option value="vietnamese">Vietnamese</option>
+                    <option value="thai">Thai</option>
+                    <option value="indian">Indian</option>
+                    <option value="british">British</option>
+                    <option value="irish">Irish</option>
+                    <option value="french">French</option>
+                    <option value="italian">Italian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="middle+eastern">Middle Eastern</option>
+                    <option value="jewish">Jewish</option>
+                    <option value="american">American</option>
+                    <option value="cajun">Cajun</option>
+                    <option value="southern">Southern</option>
+                    <option value="greek">Greek</option>
+                    <option value="german">German</option>
+                    <option value="nordic">Nordic</option>
+                    <option value="eastern+european">Eastern European</option>
+                    <option value="caribbean">Caribbean</option>
+                    <option value="latin+american">Latin American</option>
+                </select>
+                <!-- 
             <button id="intolerance" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-placeholder="Intolerances"></button> -->
-            <select id="intolerance" class="custom-select">
-                <option value="none">Intolerances - None</option>
-                <option value="dairy">Intolerance - Dairy</option>
-                <option value="egg">Intolerance - Egg</option>
-                <option value="gluten">Intolerance - Gluten</option>
-                <option value="peanut">Intolerance - Peanuts</option>
-                <option value="sesame">Intolerance - Sesame</option>
-                <option value="seafood">Intolerance - Seafood</option>
-                <option value="shellfish">Intolerance - Shellfish</option>
-                <option value="soy">Intolerance - Soy</option>
-                <option value="sulfite">Intolerance - Sulfite</option>
-                <option value="tree+nut">Intolerance - Tree Nuts</option>
-                <option value="wheat">Intolerance - Wheat</option>
-            </select>
-            <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
-
-            <br></br>
-
-            <input id="ingredientItems" class="form-control col-8" type="search"
-                placeholder="Search for a recipe by ingredient..." aria-label="Search">
-            <button id="searchBtnIngredients" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+                <select id="intolerance" class="custom-select">
+                    <option value="none">Intolerances - None</option>
+                    <option value="dairy">Intolerance - Dairy</option>
+                    <option value="egg">Intolerance - Egg</option>
+                    <option value="gluten">Intolerance - Gluten</option>
+                    <option value="peanut">Intolerance - Peanuts</option>
+                    <option value="sesame">Intolerance - Sesame</option>
+                    <option value="seafood">Intolerance - Seafood</option>
+                    <option value="shellfish">Intolerance - Shellfish</option>
+                    <option value="soy">Intolerance - Soy</option>
+                    <option value="sulfite">Intolerance - Sulfite</option>
+                    <option value="tree+nut">Intolerance - Tree Nuts</option>
+                    <option value="wheat">Intolerance - Wheat</option>
+                </select>
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+            </div>
+            <div class="row">
+                <input size="50" id="ingredientItems" class="form-control" type="search"
+                    placeholder="Search for a recipe by ingredient..." aria-label="Search">
+                <button id="searchBtnIngredients" class="btn btn-outline-success my-2 my-sm-0"
+                    type="button">Search</button>
+            </div>
         </form>
     </div>
 
-        <br>
-        <hr>
+    <br>
+    <hr>
     <div class="results-container">
         <h5>
             <center> Results </center>
