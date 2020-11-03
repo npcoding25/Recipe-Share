@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    color: #804000;
+    font-family: 'Nanum Myeongjo', serif;
+    text-align: center;
+}
+
+.topnav {
+    position: relative;
+    overflow: hidden;
+    background-color: #ffe6e6;
+}
+
+.topnav a {
+    float: left;
+    color: #804000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    font-size: 30px;
+}
+
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.topnav-right {
+    float: right;
+}
+
+h1 {
+    color: #804000;
+    font-family: "Parisienne", cursive;
+}
+.form-control {
+    text-align: center;
+}
+.Search-Form {
+    display: inline-block;
+}
+.row {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+.btn {
+    background-color: #804000;
+    font-family: 'Nanum Myeongjo', serif;
+    color: white; 
+}
+.card-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    justify-content: center;
+    margin-left: 7%;
+}
+.page-footer {
+    background-color: #ffe6e6;
+    font-family: 'Nanum Myeongjo', serif;
+    color: #804000;
+}
+.card-img-top {
+    height: 200px;
+    width: auto;
+}
+@media only screen and (max-width: 800px) {
+    .card-group {
+        grid-template-columns: 1fr 1fr;
+    }
+} 
+@media only screen and (max-width: 500px) {
+    .card-group {
+        grid-template-columns: 1fr;
+    }
+}
+/* Responsive navigation menu (for mobile devices) */
+@media screen and (max-width: 600px) {
+
+    .topnav a,
+    .topnav-right {
+        float: none;
+        display: block;
+    }
+
+    .topnav-centered a {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+}
