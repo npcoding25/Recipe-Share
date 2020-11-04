@@ -106,6 +106,11 @@ function router(app) {
         ormFunctions.deleteRecipe('recipe_id', recipeId,
             (result) => res.send({ message: 'Recipe Deleted' }));
     });
+
+    app.get('/api/apiKey', async function(req, res) {
+        const apiKey = process.env.API_KEY
+        res.send(apiKey)
+    })
 }
 
 module.exports = router

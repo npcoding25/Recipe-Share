@@ -8,6 +8,9 @@ $('#searchBtn').on("click", function (event) {
     searchRecipe()
 })
 
+$.ajax('/api/apiKey').then(function(response) {
+    APIKEY = response
+})
 
 function searchRecipe() {
     cuisineType = $('#cuisineType').val()
@@ -23,7 +26,7 @@ function searchRecipe() {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "webknox-recipes.p.rapidapi.com",
-            "x-rapidapi-key": "b5a492aa05msh6869ac7f6671576p14fe03jsn3366a114fc88"
+            "x-rapidapi-key": APIKEY
         }
     }
 
@@ -73,7 +76,7 @@ function searchRecipeIngredients() {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "b5a492aa05msh6869ac7f6671576p14fe03jsn3366a114fc88"
+            "x-rapidapi-key": APIKEY
         }
     }
 
@@ -91,7 +94,7 @@ function searchRecipeIngredients() {
                     "method": "GET",
                     "headers": {
                         "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                        "x-rapidapi-key": "b5a492aa05msh6869ac7f6671576p14fe03jsn3366a114fc88"
+                        "x-rapidapi-key": APIKEY
                     }
                 }
 
