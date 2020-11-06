@@ -55,19 +55,6 @@
 
       const result = await fetch(url, settings).then(res => res.json())
 
-      /* put the api result message onto the screen as a message if it exists */
-      // if( result.status && result.message ){
-      //     const apiResultEl = document.querySelector('#apiMessage')
-      //     apiResultEl.innerHTML = result.message
-      //     apiResultEl.classList.remove( 'd-none' )
-      //     console.log( 'showing message: '+ result.message )
-      //     setTimeout( function(){
-      //         apiResultEl.classList.add( 'd-none' )
-      //     }, 5000 )
-      // } else if( !result.status && result.message ){
-      //     alert( 'Problems: ' + result.message )
-      // }
-
       return result
     }
     let result, data, userId, recipeId;
@@ -101,18 +88,6 @@
       document.querySelector('#jsNewRecipe').innerHTML = result.message;
       recipeId = result.insertId; // save for delete
     }
-
-    // async function jsNewRecipe() {
-    //     // Post another recipe.
-    //     data = { title: 'Guacamole', description: 'Guacamole recipe',
-    //               sourceUrl: 'https://www.allrecipes.com/recipe/14231/guacamole',
-    //               imageUrl: 'https://via.placeholder.com/350' };
-    //     userId = 1;
-    //     result = await fetchJSON(`/api/recipe/${userId}`, 'post', data);
-    //     // Optionally display message
-    //     document.querySelector('#jsNewRecipe').innerHTML += `<br>${result.message}`;
-    //     recipeId = result.insertId; // save for delete
-    // }
 
     async function jsAllRecipes() { // Get all recipes
       result = await fetchJSON('/api/recipe');
@@ -162,20 +137,6 @@
         $('#jQueryLogin').text(result.message);
       });
     }
-
-    // function jQueryNewRecipe() {
-    //   // Post recipe
-    //   data = {
-    //     title: 'Veggie roti',
-    //     description: 'Veggie roti',
-    //     sourceUrl: 'http://roti.com/recipe/veggie',
-    //     imageUrl: 'http://roti.com/recipe/veggie_roti.jpg'
-    //   };
-    //   userId = 1;
-    //   $.post(`/api/recipe/${userId}`, data, function (result) { // Optionally display message
-    //     $('#jQueryNewRecipe').text(result.message);
-    //   });
-    // }
 
     function jQueryNewRecipe() {
       // Post another recipe.

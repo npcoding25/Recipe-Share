@@ -18,7 +18,7 @@ function clearLoginForm() {
     loginForm.find('#loginStatus').html('&nbsp;');
 }
 
-function NewUser() { // Create new user
+function NewUser() { 
     $.post('/api/user', loginData, function (result) {
         $('#loginStatus').text(result.message);
         loginUser = result.userId;
@@ -45,7 +45,6 @@ function Login() {
         })
         .fail(function(result) {
             console.log('[login] failure.');
-            //$('#loginStatus').text(result.responseJSON.message);
             $('#loginStatus').text('Login Failed.');
             setTimeout(() => loginForm.hide(), 1000);
         });
@@ -134,11 +133,10 @@ function UserRecipes() {
 }
 
 function DelRecipe(recipeId) {
-    // Optional: delete recipe
     $.ajax({
         url: `/api/recipe/${recipeId}`,
         method: 'DELETE'
-    }).then(function (result) { // Optionally display message
+    }).then(function (result) { 
         UserRecipes();
     });
 }
